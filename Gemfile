@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'twitter'
 
 group :test, :development do
+  gem 'rake'
   gem 'rspec'
   gem 'capybara'
   gem 'site_prism'
