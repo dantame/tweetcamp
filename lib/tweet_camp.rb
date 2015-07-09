@@ -1,0 +1,2 @@
+class TweetCamp
+end
