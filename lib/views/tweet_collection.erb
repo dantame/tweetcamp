@@ -1,0 +1,4 @@
+<%= erb :header, :locals => { header_links: [{:url => '/login', :name => 'login'},{:url => '/timeline', :name => 'timeline'},{:url => '/mentions', :name => 'mentions'},{:url => '/favorites', :name => 'favorites'}]} %>
+<% for tweet in tweets %>
+    <%= erb :tweet, :locals => { tweet: tweet } %>
+<% end %>

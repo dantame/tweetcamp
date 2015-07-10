@@ -46,12 +46,29 @@ module TweetCamp
 
     get '/timeline/?:username?' do
       username = params[:username]
+      data = []
       if username
         data = @twitter.user_timeline username
-      else
+      elsif @twitter.credentials?
         data = @twitter.user_timeline
       end
-      erb :timeline, :locals => {tweets: data}
+      erb :tweet_collection, :locals => {tweets: data}
+    end
+
+    get '/favorites' do
+      data = []
+      if @twitter.credentials?
+        data = @twitter.favorites
+      end
+      erb :tweet_collection, :locals => {tweets: data}
+    end
+
+    get '/mentions' do
+      data = []
+      if @twitter.credentials?
+        data = @twitter.mentions
+      end
+      erb :tweet_collection, :locals => {tweets: data}
     end
   end
 end
