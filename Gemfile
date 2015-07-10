@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'twitter'
+gem 'oauth'
 
 group :test, :development do
   gem 'rake'
