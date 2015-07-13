@@ -9,66 +9,62 @@ module TweetCamp
     def initialize(twitter_app_key, twitter_app_secret)
       @twitter_app_key = twitter_app_key
       @twitter_app_secret = twitter_app_secret
-      @twitter = TwitterAdapter.new do |config|
-        config.consumer_key = @twitter_app_key
-        config.consumer_secret = @twitter_app_secret
-      end
-      @request_token = get_request_token(@twitter_app_key,
-                                         @twitter_app_secret,
-                                         'http://tweet-camp.herokuapp.com/oauth_callback')
+      @twitter = TwitterAdapter.new(@twitter_app_key, @twitter_app_secret)
       super()
     end
 
-    def get_request_token(consumer_key, consumer_secret, callback_url)
-      consumer = OAuth::Consumer.new(consumer_key, consumer_secret,
-                                     { :site => "https://api.twitter.com",
-                                       :authorize_path => '/oauth/authenticate',
-                                       :sign_in => true })
-      consumer.get_request_token({:oauth_callback => callback_url})
-    end
-
     get '/' do
-
+      if @twitter.credentials?
+        redirect '/timeline'
+      else
+        redirect '/login'
+      end
     end
 
     get '/oauth_callback' do
-      token = params[:oauth_token]
       verifier = params[:oauth_verifier]
-      @access_token = @request_token.get_access_token(:oauth_verifier => verifier)
+      @access_token = @twitter.request_token.get_access_token(:oauth_verifier => verifier)
       @twitter.access_token = @access_token.token
       @twitter.access_token_secret = @access_token.secret
       redirect '/timeline'
     end
 
     get '/login' do
-      erb :login, :locals => {request_token: @request_token}
+      erb :login, :locals => {request_token: @twitter.request_token}
     end
 
     get '/timeline/?:username?' do
       username = params[:username]
-      data = []
+      data = nil
       if username
         data = @twitter.user_timeline username
       elsif @twitter.credentials?
         data = @twitter.user_timeline
       end
-      erb :tweet_collection, :locals => {tweets: data}
+      if data
+        erb :tweet_collection, :locals => {tweets: data}
+      else
+        redirect '/login'
+      end
+
     end
 
     get '/favorites' do
-      data = []
       if @twitter.credentials?
         data = @twitter.favorites
+        erb :tweet_collection, :locals => {tweets: data}
+      else
+        redirect '/login'
       end
-      erb :tweet_collection, :locals => {tweets: data}
     end
 
     get '/mentions' do
-      data = []
       if @twitter.credentials?
         data = @twitter.mentions
+        erb :tweet_collection, :locals => {tweets: data}
+      else
+        redirect '/login'
       end
-      erb :tweet_collection, :locals => {tweets: data}
     end
   end
 end
