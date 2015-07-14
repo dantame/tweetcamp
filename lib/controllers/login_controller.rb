@@ -3,6 +3,7 @@ require 'sinatra/base'
 module TweetCamp
   class LoginController < Sinatra::Base
     get '/' do
+      settings.twitter.callback_host = env['HTTP_HOST']
       erb :index, :locals => {twitter: settings.twitter, header_links: settings.links, tweets: []}
     end
 
