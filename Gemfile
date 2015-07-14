@@ -8,7 +8,7 @@ gem 'oauth'
 
 group :test, :development do
   gem 'rake'
-  gem 'rspec'
+  gem 'dotenv'
   gem 'capybara'
   gem 'site_prism'
   gem 'rubocop', require: false

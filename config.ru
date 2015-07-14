@@ -1,9 +1,11 @@
+require 'dotenv'
 require_relative 'lib/controllers/timeline_controller'
 require_relative 'lib/controllers/login_controller'
 require_relative 'lib/twitter_adapter'
+Dotenv.load
 
-twitter = TweetCamp::TwitterAdapter.new('B82hBVmCwdmytssDy0ERKMjMp',
-                                        'zUV7DOnXR55fDEYiVy9kE88qBV3CmkW2XVAVLCWX4OLRaPcwrE')
+twitter = TweetCamp::TwitterAdapter.new(ENV['TWITTER_CONSUMER_KEY'],
+                                        ENV['TWITTER_CONSUMER_SECRET'])
 
 links = [{url: '/timeline', name: 'Timeline'}]
 
