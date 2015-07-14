@@ -12,9 +12,8 @@ module TweetCamp
     let (:timeline_page) { TimelinePage.new }
 
     before :each do
-      allow(request_token).to receive(:authorize_url).and_return('test')
+      allow(controller.twitter).to receive(:authorize_url).and_return('test')
       allow(controller.twitter).to receive(:user_timeline).and_return(tweets)
-      allow(controller.twitter).to receive(:get_request_token).and_return(request_token)
       allow(controller.twitter).to receive(:credentials?).and_return(authenticated)
       timeline_page.load
     end

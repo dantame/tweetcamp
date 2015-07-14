@@ -1,3 +1,3 @@
-<% for tweet in tweets %>
+<% tweets.each do |tweet| %>
     <%= erb :tweet, :locals => { tweet: tweet } %>
 <% end %>

@@ -1,7 +1,7 @@
 <% for link in header_links %>
   <a href="<%= link[:url] %>"> <%= link[:name] %></a>
 <% end %>
-<a href="<%= twitter.get_request_token.authorize_url %>">
+<a href="<%= twitter.authorize_url %>">
   Log in via Twitter
 </a>
 

@@ -18,11 +18,18 @@ module TweetCamp
     end
 
     def get_request_token
-      consumer = OAuth::Consumer.new(@twitter.consumer_key, @twitter.consumer_secret,
-                                     { :site => "https://api.twitter.com",
-                                       :authorize_path => '/oauth/authenticate',
-                                       :sign_in => true })
-      @request_token = consumer.get_request_token({:oauth_callback => "http://#{@callback_host}/login/oauth_callback"})
+      @request_token ||= begin
+        consumer = OAuth::Consumer.new(@twitter.consumer_key, @twitter.consumer_secret,
+                                       { :site => "https://api.twitter.com",
+                                         :authorize_path => '/oauth/authenticate',
+                                         :sign_in => true })
+
+        consumer.get_request_token({:oauth_callback => "http://#{@callback_host}/login/oauth_callback"})
+      end
+    end
+
+    def authorize_url
+      @authorize_url ||= get_request_token.authorize_url
     end
 
   end
