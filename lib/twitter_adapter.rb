@@ -14,7 +14,7 @@ module TweetCamp
       super(@twitter)
       @request_token = get_request_token(twitter_app_key,
                                          twitter_app_secret,
-                                         'http://127.0.0.1:9292/oauth_callback')
+                                         'http://127.0.0.1:9292/login/oauth_callback')
     end
 
     def get_request_token(consumer_key, consumer_secret, callback_url)
