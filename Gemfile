@@ -5,10 +5,10 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'twitter'
 gem 'oauth'
+gem 'dotenv'
 
 group :test, :development do
   gem 'rake'
-  gem 'dotenv'
   gem 'capybara'
   gem 'site_prism'
   gem 'rubocop', require: false
