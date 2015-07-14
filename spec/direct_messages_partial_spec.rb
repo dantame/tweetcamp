@@ -1,6 +1,6 @@
 require 'rspec'
 
-describe DirectMessages do
+describe 'DirectMessages' do
 
   it 'shows a list of conversations that the user is involved in' do
 

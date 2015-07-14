@@ -1,6 +1,6 @@
 require 'rspec'
 
-describe Tweet do
+describe 'Tweet' do
   it 'shows the full text of a tweet' do
 
   end
