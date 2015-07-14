@@ -1,11 +1,9 @@
 require 'capybara'
 require 'capybara/rspec'
 require 'capybara/dsl'
-require 'capybara/poltergeist'
 require 'site_prism'
 require 'tilt/erb'
 require 'twitter'
-require 'main'
 require 'rspec'
 
 Capybara.configure do |config|
