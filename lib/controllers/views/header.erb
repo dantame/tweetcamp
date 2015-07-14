@@ -1,4 +1,4 @@
-<% for link in header_links %>
+<% header_links.each do |link| %>
   <a href="<%= link[:url] %>"> <%= link[:name] %></a>
 <% end %>
 <a href="<%= twitter.authorize_url %>">
