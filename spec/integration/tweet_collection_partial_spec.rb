@@ -11,7 +11,6 @@ module TweetCamp
     include_context 'Tweets'
     include_context 'Page'
     let (:authenticated) { true }
-    let (:request_token) { double() }
 
     before :each do
       allow(controller.twitter).to receive(:authorize_url).and_return('test')
