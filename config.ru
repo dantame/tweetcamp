@@ -1,5 +1,6 @@
 require 'dotenv'
 require_relative 'lib/controllers/timeline_controller'
+require_relative 'lib/controllers/mentions_controller'
 require_relative 'lib/controllers/login_controller'
 require_relative 'lib/twitter_adapter'
 Dotenv.load if ENV['RACK_ENV'] != 'production'
@@ -15,6 +16,14 @@ map '/timeline' do
   timeline_controller.set :links, links
 
   run timeline_controller.new
+end
+
+map '/mentions' do
+  mentions_controller = TweetCamp::MentionsController
+  mentions_controller.set :twitter, twitter
+  mentions_controller.set :links, links
+
+  run mentions_controller.new
 end
 
 map '/login' do

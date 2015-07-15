@@ -11,7 +11,7 @@ module TweetCamp
         data = settings.twitter.user_timeline
       end
       if data
-        erb :index, :locals => {twitter: settings.twitter, header_links: settings.links, tweets: data}
+        erb :index, :locals => {twitter: settings.twitter, tweets: data}
       else
         redirect '/login'
       end
