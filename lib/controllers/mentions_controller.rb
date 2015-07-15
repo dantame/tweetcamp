@@ -6,8 +6,6 @@ module TweetCamp
       if settings.twitter.credentials?
         data = settings.twitter.mentions
         erb :index, :locals => {twitter: settings.twitter, tweets: data}
-      else
-        redirect '/login'
       end
     end
   end

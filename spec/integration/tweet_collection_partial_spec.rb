@@ -23,24 +23,20 @@ module TweetCamp
       context 'user is authenticated' do
         it_behaves_like 'Tweet Collection'
       end
-
-      context 'user is not authenticated' do
-        let (:authenticated) { false }
-        it 'redirects to /login if the user is not authenticated' do
-          target_page.load
-          expect(page.current_url).to include('/login')
-        end
-      end
     end
 
     context '/?:username?' do
       context 'user is authenticated' do
-        it_behaves_like 'Tweet Collection', {username: 'dantame'}
+        it_behaves_like 'Tweet Collection' do
+          let(:username) { 'dantame' }
+        end
       end
 
       context 'user is not authenticated' do
         let (:authenticated) { false }
-        it_behaves_like 'Tweet Collection', {username: 'dantame'}
+        it_behaves_like 'Tweet Collection' do
+          let(:username) { 'dantame' }
+        end
       end
     end
   end

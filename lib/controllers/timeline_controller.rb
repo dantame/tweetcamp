@@ -12,8 +12,6 @@ module TweetCamp
       end
       if data
         erb :index, :locals => {twitter: settings.twitter, tweets: data}
-      else
-        redirect '/login'
       end
     end
   end

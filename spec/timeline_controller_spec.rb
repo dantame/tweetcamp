@@ -42,15 +42,5 @@ module TweetCamp
       get "/#{username}"
       expect(last_response.ok?).to be(true)
     end
-
-    it 'redirects to login if the user is not authenticated and the root path is requested' do
-      allow(controller.twitter).to receive(:credentials?).and_return(false)
-      allow(controller.twitter).to receive(:user_timeline)
-
-      get '/'
-      expect(last_response).to be_redirect
-      follow_redirect!
-      expect(last_request.url).to include('/login')
-    end
   end
 end

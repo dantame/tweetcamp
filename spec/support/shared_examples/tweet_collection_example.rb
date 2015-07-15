@@ -1,10 +1,16 @@
 require 'support/shared_contexts/page_context'
 
-shared_examples 'Tweet Collection' do |*page_args|
+shared_examples 'Tweet Collection' do
   include_context 'Page'
 
+  let (:username) { nil }
+
   before :each do
-    target_page.load *page_args
+    if username
+      target_page.load(username: username)
+    else
+      target_page.load
+    end
   end
 
   it 'shows a list of tweets' do
