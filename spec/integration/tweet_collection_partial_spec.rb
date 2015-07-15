@@ -1,4 +1,4 @@
-require 'support/page_objects/timeline_page'
+require 'support/page_objects/tweet_collection_page'
 require 'controllers/timeline_controller'
 require 'support/shared_contexts/controller_context'
 require 'support/shared_contexts/tweets_context'
@@ -6,7 +6,7 @@ require 'support/shared_contexts/page_context'
 require 'support/shared_examples/tweet_collection_example'
 
 module TweetCamp
-  describe TimelinePage, :type => :feature do
+  describe TweetCollectionPage, :type => :feature do
     include_context 'Controller', TweetCamp::TimelineController
     include_context 'Tweets'
     include_context 'Page'
