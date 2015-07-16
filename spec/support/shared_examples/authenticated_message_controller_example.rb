@@ -11,10 +11,10 @@ shared_examples 'Authenticated Message Controller' do |method|
       .to receive(:erb)
             .with(:direct_message_collection,
                   { locals: {
-                    twitter: controller.twitter,
-                    dms: messages
-                  },
-                    layout: :index }
+                      twitter: controller.twitter,
+                      dms: messages
+                    }
+                  }
             )
 
     get '/'

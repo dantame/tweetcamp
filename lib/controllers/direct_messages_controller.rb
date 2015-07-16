@@ -1,12 +1,17 @@
 require 'sinatra/base'
+require_relative '../helpers/authentication_helper'
 
 module TweetCamp
   class DirectMessagesController < Sinatra::Base
+    register TweetCamp::AuthenticationHelper
+
+    before {
+      check_authentication
+    }
+
     get '/' do
-      if settings.twitter.credentials?
-        data = settings.twitter.direct_messages
-        erb :direct_message_collection, {locals: {twitter: settings.twitter, dms: data}}
-      end
+      data = settings.twitter.direct_messages
+      erb :direct_message_collection, {locals: {twitter: settings.twitter, dms: data}}
     end
   end
 end

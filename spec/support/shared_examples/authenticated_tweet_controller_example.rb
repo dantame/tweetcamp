@@ -11,10 +11,10 @@ shared_examples 'Authenticated Tweet Controller' do |method|
       .to receive(:erb)
             .with(:tweet_collection,
                   { locals: {
-                    twitter: controller.twitter,
-                    tweets: tweets
-                  },
-                  layout: :index }
+                      twitter: controller.twitter,
+                      tweets: tweets
+                    }
+                  }
             )
 
     get '/'

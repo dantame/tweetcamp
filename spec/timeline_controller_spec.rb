@@ -13,16 +13,17 @@ module TweetCamp
 
     it 'tries to render the template with an array of tweets for a specific username' do
       username = 'dantame'
+      allow(controller.twitter).to receive(:credentials?).and_return(true)
       expect(controller.twitter).to receive(:user_timeline).with(username).and_return(tweets)
 
       expect_any_instance_of(described_class)
         .to receive(:erb)
               .with(:tweet_collection,
                     { locals: {
-                      twitter: controller.twitter,
-                      tweets: tweets
-                    },
-                      layout: :index }
+                        twitter: controller.twitter,
+                        tweets: tweets
+                      }
+                    }
               )
 
       get "/#{username}"
