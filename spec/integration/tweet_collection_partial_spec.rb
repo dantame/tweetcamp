@@ -1,9 +1,4 @@
-require 'support/page_objects/tweet_collection_page'
 require 'controllers/timeline_controller'
-require 'support/shared_contexts/controller_context'
-require 'support/shared_contexts/tweets_context'
-require 'support/shared_contexts/page_context'
-require 'support/shared_examples/tweet_collection_example'
 
 module TweetCamp
   describe TweetCollectionPage, :type => :feature do

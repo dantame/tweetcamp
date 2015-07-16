@@ -1,6 +1,3 @@
-require 'support/shared_contexts/controller_context'
-require 'support/shared_contexts/tweets_context'
-
 shared_examples 'Authenticated Tweet Controller' do |method|
   include_context 'Controller', described_class
   include_context 'Tweets'

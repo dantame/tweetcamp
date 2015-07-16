@@ -1,5 +1,3 @@
-require 'support/shared_contexts/page_context'
-
 shared_examples 'Tweet Collection' do
   include_context 'Page'
 
