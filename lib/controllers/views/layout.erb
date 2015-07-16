@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css">
+  </head>
+  <body>
+    <%= erb :header, :locals => { twitter: twitter } %>
+    <% if block_given? %>
+        <%= yield %>
+    <% end %>
+  </body>
+</html>
+
+
