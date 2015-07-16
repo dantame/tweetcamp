@@ -11,7 +11,7 @@ module TweetCamp
         data = settings.twitter.user_timeline
       end
       if data
-        erb :index, :locals => {twitter: settings.twitter, tweets: data}
+        erb :tweet_collection, {locals: {twitter: settings.twitter, tweets: data}, layout: :index}
       end
     end
   end

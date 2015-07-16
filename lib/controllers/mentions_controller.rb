@@ -5,7 +5,7 @@ module TweetCamp
     get '/' do
       if settings.twitter.credentials?
         data = settings.twitter.mentions
-        erb :index, :locals => {twitter: settings.twitter, tweets: data}
+        erb :tweet_collection, {locals: {twitter: settings.twitter, tweets: data}, layout: :index}
       end
     end
   end

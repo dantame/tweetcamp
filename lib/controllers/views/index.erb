@@ -1,2 +1,4 @@
 <%= erb :header, :locals => { twitter: twitter } %>
-<%= erb :tweet_collection, :locals => { tweets: tweets } %>
+<% if block_given? %>
+  <%= yield %>
+<% end %>

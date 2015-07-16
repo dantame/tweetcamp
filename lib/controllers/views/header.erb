@@ -1,6 +1,9 @@
-<a href="/timeline">Timeline</a>
-<a href="/mentions">Mentions</a>
-<a href="/favorites">Favorites</a>
+<% if twitter.credentials? %>
+    <a href="/timeline">Timeline</a>
+    <a href="/mentions">Mentions</a>
+    <a href="/favorites">Favorites</a>
+    <a href="/direct_messages">Direct Messages</a>
+<% end %>
 <a href="<%= twitter.authorize_url %>">
   Log in via Twitter
 </a>
