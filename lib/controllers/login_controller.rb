@@ -4,7 +4,7 @@ module TweetCamp
   class LoginController < Sinatra::Base
     get '/' do
       settings.twitter.callback_host = env['HTTP_HOST']
-      erb :index, :locals => {twitter: settings.twitter, tweets: []}
+      erb :index, :locals => {twitter: settings.twitter}
     end
 
     get '/oauth_callback' do

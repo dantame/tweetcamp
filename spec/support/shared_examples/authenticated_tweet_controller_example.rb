@@ -1,7 +1,4 @@
-require 'support/shared_contexts/controller_context'
-require 'support/shared_contexts/tweets_context'
-
-shared_examples 'Authenticated Controller' do |method|
+shared_examples 'Authenticated Tweet Controller' do |method|
   include_context 'Controller', described_class
   include_context 'Tweets'
   let (:app) { controller }
@@ -12,10 +9,11 @@ shared_examples 'Authenticated Controller' do |method|
 
     expect_any_instance_of(described_class)
       .to receive(:erb)
-            .with(:index,
-                  :locals => {
-                    twitter: controller.twitter,
-                    tweets: tweets
+            .with(:tweet_collection,
+                  { locals: {
+                      twitter: controller.twitter,
+                      tweets: tweets
+                    }
                   }
             )
 

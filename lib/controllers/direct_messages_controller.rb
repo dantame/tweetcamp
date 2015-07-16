@@ -2,7 +2,7 @@ require 'sinatra/base'
 require_relative '../helpers/authentication_helper'
 
 module TweetCamp
-  class FavoritesController < Sinatra::Base
+  class DirectMessagesController < Sinatra::Base
     helpers TweetCamp::AuthenticationHelper
 
     before {
@@ -10,8 +10,8 @@ module TweetCamp
     }
 
     get '/' do
-      data = settings.twitter.favorites
-      erb :tweet_collection, {locals: {twitter: settings.twitter, tweets: data}}
+      data = settings.twitter.direct_messages
+      erb :direct_message_collection, {locals: {twitter: settings.twitter, dms: data}}
     end
   end
 end

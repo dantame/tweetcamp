@@ -2,6 +2,7 @@ require 'dotenv'
 require_relative 'lib/controllers/timeline_controller'
 require_relative 'lib/controllers/mentions_controller'
 require_relative 'lib/controllers/favorites_controller'
+require_relative 'lib/controllers/direct_messages_controller'
 require_relative 'lib/controllers/login_controller'
 require_relative 'lib/twitter_adapter'
 Dotenv.load if ENV['RACK_ENV'] != 'production'
@@ -21,13 +22,20 @@ map '/mentions' do
   mentions_controller.set :twitter, twitter
 
   run mentions_controller.new
-  end
+end
 
 map '/favorites' do
   favorites_controller = TweetCamp::FavoritesController
   favorites_controller.set :twitter, twitter
 
   run favorites_controller.new
+end
+
+map '/direct_messages' do
+  direct_messages_controller = TweetCamp::DirectMessagesController
+  direct_messages_controller.set :twitter, twitter
+
+  run direct_messages_controller.new
 end
 
 map '/login' do

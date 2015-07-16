@@ -6,6 +6,8 @@ require 'tilt/erb'
 require 'twitter'
 require 'rspec'
 
+Dir["./spec/support/**/*.rb"].sort.each { |f| require f}
+
 Capybara.configure do |config|
   #config.javascript_driver = :poltergeist
   #config.default_driver = :poltergeist
