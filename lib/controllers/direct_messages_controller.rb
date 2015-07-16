@@ -3,7 +3,7 @@ require_relative '../helpers/authentication_helper'
 
 module TweetCamp
   class DirectMessagesController < Sinatra::Base
-    register TweetCamp::AuthenticationHelper
+    helpers TweetCamp::AuthenticationHelper
 
     before {
       check_authentication
