@@ -11,6 +11,19 @@
   </div>
   <div class="qa-tweet-body">
     <span class="qa-tweet-message"><%= tweet.text %></span>
+    <% if tweet.media.length %>
+      <div class="qa-tweet-media">
+     <% tweet.media.each do |media| %>
+            <% if media.respond_to?(:video_size) %>
+              <video class="qa-tweet-video">
+                <source src="<%= media.media_url %>">
+              </video>
+            <% else %>
+              <img class="qa-tweet-image" src="<%= media.media_url %>">
+            <% end %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="qa-tweet-footer">
     <span class="qa-tweet-reply"></span>
